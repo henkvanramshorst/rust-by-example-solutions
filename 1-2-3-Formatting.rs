@@ -31,13 +31,11 @@ struct Color {
 impl Display for Color {
     // `f` is a buffer, this method must write the formatted string into it
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        // RGB (128, 255, 9) 0x80FF5A  0x{:>02X}{:>02X}{:>02X}
-        // I am not very happy with this solution. I think this can be done in a better way.
-        write!(f, "RGB ({0}, {1}, {2}) 0x{3}{4}{5}",
-               self.red, self.green, self.blue,
-               format!("{:01$x}", self.red, 2),
-               format!("{:01$x}", self.green, 2),
-               format!("{:01$x}", self.blue, 2))
+        write!(
+            f,
+            "RBG ({0}, {1}, {2}) 0x{0:02X}{1:02X}{2:02X}",
+            self.red, self.green, self.blue
+        )
     }
 }
 
